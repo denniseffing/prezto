@@ -9,3 +9,15 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+export LANG="en_US.UTF-8"
+
+export PATH="$PATH:/Users/effing/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH="$PATH:/Users/effing/.local/bin"
+
+export PYENV_ROOT=~/.config/pyenv
+
+export npm_config_userconfig=$XDG_CONFIG_HOME/npm/config
+export npm_config_cache=$XDG_CACHE_HOME/npm
+export npm_config_prefix=$XDG_DATA_HOME/npm
+export PATH=$PATH:$XDG_DATA_HOME/npm/bin

@@ -10,4 +10,23 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# mcfly (see https://github.com/cantino/mcfly)
+eval "$(mcfly init zsh)"
+
+# mise
+eval "$(mise activate zsh)"
+
+# 1Password plugins
+source /Users/effing/.config/op/plugins.sh
+
+# Start 1Password CLI daemon to fix issues with direnv
+# See: https://github.com/direnv/direnv/issues/662
+op daemon -d
+
+# aliases
+
+helpme() {
+    printf "%s\n" "$*" | ollama run qwen2.5-coder "output as shell command with a one-line description";
+}
+
+alias helpme='helpme'
