@@ -51,7 +51,7 @@ zstyle ':prezto:load' pmodule \
   'kubernetes' \
   'alias-tips' \
   'direnv' \
-  $([[ -z "$INTELLIJ_ENVIRONMENT_READER" ]] && echo 'tmux') \
+  $([[ -z "$INTELLIJ_ENVIRONMENT_READER" && -z "$AI_SANDBOX" ]] && echo 'tmux') \
   'prompt'
 
 #

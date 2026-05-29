@@ -11,17 +11,36 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # mcfly (see https://github.com/cantino/mcfly)
-eval "$(mcfly init zsh)"
+if command -v mcfly >/dev/null 2>&1; then
+  eval "$(mcfly init zsh)"
+fi
+
+# fnox
+if command -v fnox >/dev/null 2>&1; then
+  eval "$(fnox activate zsh)"
+fi
 
 # mise
-eval "$(mise activate zsh)"
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
 
-# 1Password plugins
-source /Users/effing/.config/op/plugins.sh
+# direnv
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
 
-# Start 1Password CLI daemon to fix issues with direnv
+# television (https://github.com/alexpasmantier/television)
+if command -v tv >/dev/null 2>&1; then
+  eval "$(tv init zsh)"
+fi
+
+# 1Password plugins & start 1Password CLI daemon to fix issues with direnv
 # See: https://github.com/direnv/direnv/issues/662
-op daemon -d
+if command -v op >/dev/null 2>&1 && [[ -r "$HOME/.config/op/plugins.sh" ]]; then
+  source "$HOME/.config/op/plugins.sh"
+  op daemon -d
+fi
 
 # aliases
 
